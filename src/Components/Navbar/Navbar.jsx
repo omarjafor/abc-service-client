@@ -35,7 +35,7 @@ function Navbar() {
   } , [])
 
   return (
-    <div className='h-[180vh]'>
+    <div className='h-[120vh]'>
       <nav className={scrollvalue > 10 ? 'sticky top-0 bg-green-600 text-black flex justify-center items-center h-20 w-full' : 'sticky top-0 dark:text-white text-black flex justify-center items-center h-20 w-full'}>
       <ul className='list flex justify-center items-center space-x-4'>
         <li>Home</li>
