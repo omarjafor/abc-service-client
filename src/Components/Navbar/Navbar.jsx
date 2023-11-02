@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import './App.css'
 
 function Navbar() {
   const [mode, setMode] = useState('light');
