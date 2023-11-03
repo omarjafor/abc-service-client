@@ -33,6 +33,11 @@ function Navbar() {
     setScrollvalue(window.scrollY)
   }
 
+  useEffect(() => {
+    const scroll = window.addEventListener("scroll", listenScrollEvent);
+    return () => scroll;
+  }, [])
+  
   const navLink =
     <>
       <li><NavLink to='/'
@@ -56,13 +61,8 @@ function Navbar() {
       }
     </>
 
-  useEffect( () => {
-    const scroll = window.addEventListener("scroll", listenScrollEvent);
-    return () => scroll;
-  } , [])
-
   return (
-    <nav className={scrollvalue > 10 ? "navbar px-12 sticky top-0 z-20 bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 dark:from-gray-700 dark:via-gray-900 dark:to-black" : "navbar px-12 sticky top-0 z-20 bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 dark:from-gray-700 dark:via-gray-900 dark:to-black"}>
+    <nav className={scrollvalue > 10 ? "navbar px-24 sticky top-0 z-20 bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 dark:from-gray-700 dark:via-gray-900 dark:to-black" : "navbar px-24 sticky top-0 z-20 bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 dark:from-gray-700 dark:via-gray-900 dark:to-black"}>
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -109,7 +109,7 @@ function Navbar() {
             </div>
             :
             <NavLink to='/login' className={({ isActive, isPending }) =>
-              isPending ? "pending" : isActive ? "text-green-300 text-xl mt-3 font-bold underline outline-offset-8" : "font-bold lg:text-white mt-3 text-lg"}>Login
+              isPending ? "pending" : isActive ? "text-green-300 text-xl mt-3 font-bold underline outline-offset-8" : "font-bold text-white mt-3 text-lg"}>Login
             </NavLink>
         }
         <label className="swap swap-rotate ml-4">
