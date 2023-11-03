@@ -1,4 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import useAuth from "../../Hooks/useAuth";
 import { useState } from "react";
 
@@ -7,7 +8,7 @@ const Login = () => {
     const [authError, setAuthError] = useState('');
     const location = useLocation();
     const navigate = useNavigate();
-    const { signIn, googleLogin } = useAuth()
+    const { signIn, googleLogin, facebookLogin } = useAuth()
 
     const handleSignIn = e => {
         e.preventDefault();
@@ -15,11 +16,12 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
 
+        const toastId = toast.loading('User Login in....')
         signIn(email, password)
         .then(res => {
             console.log(res.user);
             form.reset();
-            alert('User Login Successful');
+            toast.success('User Login Successful', { id: toastId });
             navigate(location?.state ? location.state : '/');
         })
         .catch(err => {
@@ -29,10 +31,11 @@ const Login = () => {
     }
 
     const handleGoogleLogin = () => {
+        const toastId = toast.loading('User Login in....')
         googleLogin()
         .then(res => {
             console.log(res.user)
-            alert('User Login Successfull')
+            toast.success('User Login Successfull', { id: toastId })
             navigate(location?.state ? location.state : '/');
         })
         .catch(err => {
@@ -40,7 +43,18 @@ const Login = () => {
         })
     }
 
-    
+    const handleFacebookLogin = () => {
+        const toastId = toast.loading('User Login in....')
+        facebookLogin()
+            .then(res => {
+                console.log(res.user)
+                toast.success('User Login Successfull', { id: toastId })
+                navigate(location?.state ? location.state : '/');
+            })
+            .catch(err => {
+                console.log(err.message);
+            })
+    } 
 
     return (
         <section className="relative flex flex-wrap lg:h-screen lg:items-center">
@@ -141,7 +155,7 @@ const Login = () => {
                     </button>
                     <button
                         className="block select-none relative mb-4 place-items-center align-middle"
-                        onClick={handleGoogleLogin}
+                        onClick={handleFacebookLogin}
                         data-ripple-light="true"
                     >
                         <img src="https://i.ibb.co/qsscgfD/facebook.png" alt="" className="h-12 w-12 mx-auto" />
