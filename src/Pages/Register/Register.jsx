@@ -65,24 +65,25 @@ const Register = () => {
                             </a>
 
                             <h1
-                                className="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl"
+                                className="mt-2 mb-8 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl dark:text-white"
                             >
                                 Welcome to Squid 🦑
                             </h1>
 
-                            <p className="mt-4 leading-relaxed text-gray-500">
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi
-                                nam dolorum aliquam, quibusdam aperiam voluptatum.
-                            </p>
+                            
+                        </div>
+
+                        <div className="mx-auto max-w-lg text-center">
+                            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Get Registration Here!</h1>
                         </div>
 
                         <form action="#" className="mt-8 grid grid-cols-6 gap-6">
-                            <div className="col-span-6 sm:col-span-3">
+                            <div className="col-span-6">
                                 <label
                                     htmlFor="FirstName"
-                                    className="block text-sm font-medium text-gray-700"
+                                    className="block text-sm font-medium text-gray-700 dark:text-gray-300"
                                 >
-                                    First Name
+                                    Your Name
                                 </label>
 
                                 <input
@@ -93,25 +94,9 @@ const Register = () => {
                                 />
                             </div>
 
-                            <div className="col-span-6 sm:col-span-3">
-                                <label
-                                    htmlFor="LastName"
-                                    className="block text-sm font-medium text-gray-700"
-                                >
-                                    Last Name
-                                </label>
-
-                                <input
-                                    type="text"
-                                    id="LastName"
-                                    name="last_name"
-                                    className="mt-1 py-2 px-3 w-full rounded-md border border-solid border-blue-400 bg-white text-sm text-gray-700 shadow-sm"
-                                />
-                            </div>
-
                             <div className="col-span-6">
-                                <label htmlFor="Email" className="block text-sm font-medium text-gray-700">
-                                    Email
+                                <label htmlFor="Email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                                    Your Email
                                 </label>
 
                                 <input
@@ -122,10 +107,23 @@ const Register = () => {
                                 />
                             </div>
 
+                            <div className="col-span-6">
+                                <label htmlFor="image" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                                    Your Image Url
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="image"
+                                    name="image"
+                                    className="mt-1 py-2 px-3 w-full rounded-md border border-solid border-blue-400 bg-white text-sm text-gray-700 shadow-sm"
+                                />
+                            </div>
+
                             <div className="col-span-6 sm:col-span-3">
                                 <label
                                     htmlFor="Password"
-                                    className="block text-sm font-medium text-gray-700"
+                                    className="block text-sm font-medium text-gray-700 dark:text-gray-300"
                                 >
                                     Password
                                 </label>
@@ -141,7 +139,7 @@ const Register = () => {
                             <div className="col-span-6 sm:col-span-3">
                                 <label
                                     htmlFor="PasswordConfirmation"
-                                    className="block text-sm font-medium text-gray-700"
+                                    className="block text-sm font-medium text-gray-700 dark:text-gray-300"
                                 >
                                     Password Confirmation
                                 </label>
@@ -149,7 +147,7 @@ const Register = () => {
                                 <input
                                     type="password"
                                     id="PasswordConfirmation"
-                                    name="password_confirmation"
+                                    name="password_confirm"
                                     className="mt-1 py-2 px-3 w-full rounded-md border border-solid border-blue-400 bg-white text-sm text-gray-700 shadow-sm"
                                 />
                             </div>
@@ -163,7 +161,7 @@ const Register = () => {
                                         className="h-5 w-5 rounded-md border-gray-200 bg-white shadow-sm"
                                     />
 
-                                    <span className="text-sm text-gray-700">
+                                    <span className="text-sm text-gray-700 dark:text-gray-300">
                                         I want to receive emails about events, product updates and
                                         company announcements.
                                     </span>
@@ -171,7 +169,7 @@ const Register = () => {
                             </div>
 
                             <div className="col-span-6">
-                                <p className="text-sm text-gray-500">
+                                <p className="text-sm text-gray-500 dark:text-gray-300">
                                     By creating an account, you agree to our &nbsp;
                                     <a href="#" className="text-gray-700 underline">
                                         terms and conditions 
@@ -182,15 +180,16 @@ const Register = () => {
                             </div>
 
                             <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
-                                <button
+                                <button 
+                                    type="submit"
                                     className="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
                                 >
                                     Create an account 
                                 </button>
 
-                                <p className="mt-4 text-base text-gray-500 sm:mt-0">
+                                <p className="mt-4 text-base text-gray-500 dark:text-gray-300 sm:mt-0">
                                     Already have an account? &nbsp;
-                                    <Link to='/login' className="text-black font-semibold underline">Log in</Link>.
+                                    <Link to='/login' className="text-black dark:text-white font-semibold underline">Log in</Link>.
                                 </p>
                             </div>
                         </form>

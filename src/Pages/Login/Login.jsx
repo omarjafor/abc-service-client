@@ -6,12 +6,7 @@ const Login = () => {
         <section className="relative flex flex-wrap lg:h-screen lg:items-center">
             <div className="w-full px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24">
                 <div className="mx-auto max-w-lg text-center">
-                    <h1 className="text-2xl font-bold sm:text-3xl">Get started today!</h1>
-
-                    <p className="mt-4 text-gray-500">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Et libero nulla
-                        eaque error neque ipsa culpa autem, at itaque nostrum!
-                    </p>
+                    <h1 className="text-2xl font-bold sm:text-3xl dark:text-white">Get Started Today!</h1>
                 </div>
 
                 <form action="" className="mx-auto mb-0 mt-8 max-w-md space-y-4">
@@ -80,9 +75,9 @@ const Login = () => {
                     </div>
 
                     <div className="">
-                        <p className="text-base text-gray-500">
-                            No account? &nbsp;
-                            <Link className="underline text-black font-semibold" to='/register'>Sign up</Link>
+                        <p className="text-base text-gray-500 dark:text-gray-300">
+                            Don&apos;t have an account? &nbsp;
+                            <Link className="underline text-black dark:text-white font-semibold" to='/register'>Sign up</Link>
                         </p>
 
                         <button
