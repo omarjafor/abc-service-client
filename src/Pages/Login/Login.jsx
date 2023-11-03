@@ -1,7 +1,47 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
+import { useState } from "react";
 
 
 const Login = () => {
+    const [authError, setAuthError] = useState('');
+    const location = useLocation();
+    const navigate = useNavigate();
+    const { signIn, googleLogin } = useAuth()
+
+    const handleSignIn = e => {
+        e.preventDefault();
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        signIn(email, password)
+        .then(res => {
+            console.log(res.user);
+            form.reset();
+            alert('User Login Successful');
+            navigate(location?.state ? location.state : '/');
+        })
+        .catch(err => {
+            console.log(err.message);
+            setAuthError('Check Your Email or Password');
+        })
+    }
+
+    const handleGoogleLogin = () => {
+        googleLogin()
+        .then(res => {
+            console.log(res.user)
+            alert('User Login Successfull')
+            navigate(location?.state ? location.state : '/');
+        })
+        .catch(err => {
+            console.log(err.message);
+        })
+    }
+
+    
+
     return (
         <section className="relative flex flex-wrap lg:h-screen lg:items-center">
             <div className="w-full px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24">
@@ -9,13 +49,13 @@ const Login = () => {
                     <h1 className="text-2xl font-bold sm:text-3xl dark:text-white">Get Started Today!</h1>
                 </div>
 
-                <form action="" className="mx-auto mb-0 mt-8 max-w-md space-y-4">
+                <form onSubmit={handleSignIn} className="mx-auto mb-0 mt-8 max-w-md space-y-4">
                     <div>
                         <label htmlFor="email" className="sr-only">Email</label>
 
                         <div className="relative">
                             <input
-                                type="email"
+                                type="email" name="email"
                                 className="w-full rounded-lg border border-solid border-blue-400 p-4 pe-12 text-sm shadow-sm"
                                 placeholder="Enter email"
                             />
@@ -44,7 +84,7 @@ const Login = () => {
 
                         <div className="relative">
                             <input
-                                type="password"
+                                type="password" name="password"
                                 className="w-full rounded-lg border border-solid border-blue-400 p-4 pe-12 text-sm shadow-sm"
                                 placeholder="Enter password"
                             />
@@ -86,8 +126,41 @@ const Login = () => {
                         >
                             Sign in
                         </button>
+                        {
+                            authError && <p className="text-red-600"> {authError} </p>
+                        }
                     </div>
                 </form>
+                <div className="flex w-11/12 mx-auto space-x-4 justify-center justify-items-center items-center">
+                    <button
+                        className="block select-none relative mb-4 place-items-center align-middle"
+                        onClick={handleGoogleLogin}
+                        data-ripple-light="true"
+                    >
+                        <img src="https://i.ibb.co/5Wy5sXn/google.png" alt="" className="h-12 w-12 mx-auto" />
+                    </button>
+                    <button
+                        className="block select-none relative mb-4 place-items-center align-middle"
+                        onClick={handleGoogleLogin}
+                        data-ripple-light="true"
+                    >
+                        <img src="https://i.ibb.co/qsscgfD/facebook.png" alt="" className="h-12 w-12 mx-auto" />
+                    </button>
+                    <button
+                        className="block select-none relative mb-4 place-items-center align-middle"
+                        onClick={handleGoogleLogin}
+                        data-ripple-light="true"
+                    >
+                        <img src="https://i.ibb.co/3rfR0H7/twitter.png" alt="" className="h-12 w-12 mx-auto" />
+                    </button>
+                    <button
+                        className="block select-none relative mb-4 place-items-center align-middle"
+                        onClick={handleGoogleLogin}
+                        data-ripple-light="true"
+                    >
+                        <img src="https://i.ibb.co/xf4HYnH/github.png" alt="" className="h-12 w-12 mx-auto" />
+                    </button>
+                </div>
             </div>
 
             <div className="relative h-64 w-full sm:h-96 lg:h-full lg:w-1/2">
