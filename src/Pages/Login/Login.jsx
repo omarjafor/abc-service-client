@@ -2,6 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import useAuth from "../../Hooks/useAuth";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 
 const Login = () => {
@@ -89,6 +90,9 @@ const Login = () => {
 
     return (
         <section className="relative flex flex-wrap lg:h-screen lg:items-center">
+            <Helmet>
+                <title>Abc Service | Login</title>
+            </Helmet>
             <div className="w-full px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-24">
                 <div className="mx-auto max-w-lg text-center">
                     <h1 className="text-2xl font-bold sm:text-3xl dark:text-white">Get Started Today!</h1>
@@ -176,7 +180,7 @@ const Login = () => {
                         }
                     </div>
                 </form>
-                <div className="flex w-11/12 mx-auto space-x-4 justify-center justify-items-center items-center">
+                <div className="flex mt-3 w-11/12 mx-auto space-x-4 justify-center justify-items-center items-center">
                     <button
                         className="block select-none relative mb-4 place-items-center align-middle"
                         onClick={handleGoogleLogin}

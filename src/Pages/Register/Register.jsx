@@ -1,9 +1,68 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
+import { useState } from "react";
+import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 
 const Register = () => {
+    const { createUser, profileUpdate, logOut } = useAuth();
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+
+    const handleSignUp = e => {
+        e.preventDefault();
+        const form = e.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const image = form.image.value;
+        const password = form.password.value;
+        const passwordConfirm = form.passwordConfirm.value;
+        console.log(name, email, image, password, passwordConfirm);
+
+        if (password.length < 6 || passwordConfirm.length < 6) {
+            setError('Password is less than 6 characters');
+            return;
+        } else if (password !== passwordConfirm) {
+            setError('Password does not matched');
+            return;
+        } else if (!/[A-Z]/.test(password || passwordConfirm)) {
+            setError('Password does not have a capital letter');
+            return;
+        } else if (!/[!@#$%^&*]/.test(password || passwordConfirm)) {
+            setError('Password does not have a special character');
+            return;
+        } 
+        setError('');
+
+        const toastId = toast.loading('User Registration in....')
+        createUser(email, password)
+            .then(res => {
+                console.log(res.user);
+                toast.success('User Registration Successful', { id: toastId })
+                e.target.reset();
+                navigate('/login');
+
+                profileUpdate(name, image)
+                .then(() => {
+                    console.log('Profile Updated')
+                }).catch(err => {
+                    console.log(err.message)
+                })
+
+                logOut()
+            })
+            .catch(err => {
+                console.error(err)
+                toast.error('User Registration Failed', { id: toastId })
+                setError(err.message)
+            })
+    }
     return (
         <section className="">
+            <Helmet>
+                <title>Abc Service | Register</title>
+            </Helmet>
             <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
                 <section
                     className="relative flex h-32 items-end bg-gray-900 lg:col-span-5 lg:h-full xl:col-span-6"
@@ -77,7 +136,7 @@ const Register = () => {
                             <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Get Registration Here!</h1>
                         </div>
 
-                        <form action="#" className="mt-8 grid grid-cols-6 gap-6">
+                        <form onSubmit={handleSignUp} className="mt-8 grid grid-cols-6 gap-6">
                             <div className="col-span-6">
                                 <label
                                     htmlFor="FirstName"
@@ -89,7 +148,7 @@ const Register = () => {
                                 <input
                                     type="text"
                                     id="FirstName"
-                                    name="first_name"
+                                    name="name"
                                     className="mt-1 py-2 px-3 w-full rounded-md border border-solid border-blue-400 bg-white text-sm text-gray-700 shadow-sm"
                                 />
                             </div>
@@ -147,7 +206,7 @@ const Register = () => {
                                 <input
                                     type="password"
                                     id="PasswordConfirmation"
-                                    name="password_confirm"
+                                    name="passwordConfirm"
                                     className="mt-1 py-2 px-3 w-full rounded-md border border-solid border-blue-400 bg-white text-sm text-gray-700 shadow-sm"
                                 />
                             </div>
@@ -157,7 +216,7 @@ const Register = () => {
                                     <input
                                         type="checkbox"
                                         id="MarketingAccept"
-                                        name="marketing_accept"
+                                        name="checkbox"
                                         className="h-5 w-5 rounded-md border-gray-200 bg-white shadow-sm"
                                     />
 
@@ -193,6 +252,9 @@ const Register = () => {
                                 </p>
                             </div>
                         </form>
+                        {
+                            error && <p className="text-red-600 mt-3"> {error} </p>
+                        }
                     </div>
                 </main>
             </div>
