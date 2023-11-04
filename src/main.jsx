@@ -12,6 +12,7 @@ import Profile from './Pages/Profile/Profile';
 import { HelmetProvider } from 'react-helmet-async';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import BookService from './Pages/BookService/BookService';
+import MyBooking from './Pages/MyBooking/MyBooking';
 
 const router = createBrowserRouter([
   {
@@ -32,7 +33,8 @@ const router = createBrowserRouter([
         loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
       },
       {
-        
+        path: 'mybookings',
+        element: <PrivateRoute><MyBooking></MyBooking></PrivateRoute>
       }
     ]
   },

@@ -48,10 +48,10 @@ function Navbar() {
         className={({ isActive, isPending }) =>
           isPending ? "pending" : isActive ? "text-green-300 text-xl font-bold underline outline-offset-8" : "font-bold lg:text-white text-lg"}
       >Add Product</NavLink></li>
-      <li><NavLink to='/mycart'
+      <li><NavLink to='/mybookings'
         className={({ isActive, isPending }) =>
           isPending ? "pending" : isActive ? "text-green-300 text-xl font-bold underline outline-offset-8" : "font-bold lg:text-white text-lg"}
-      >My Cart</NavLink></li>
+      >My Booking</NavLink></li>
       {
         user?.email &&
         <li><NavLink to='/profile'
