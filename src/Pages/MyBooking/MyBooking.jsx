@@ -56,7 +56,7 @@ const MyBooking = () => {
     }
 
     return (
-        <div>
+        <div className="max-w-[1440px] mx-auto">
             <h2 className="text-5xl">Your bookings: {bookings.length}</h2>
             <div className="overflow-x-auto w-full">
                 <table className="table w-full">
