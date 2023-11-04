@@ -50,7 +50,7 @@ const AuthProvider = ({ children }) => {
     }
 
     const logOut = () => {
-        return signOut(auth).then().catch();
+        return signOut(auth);
     }
 
     useEffect( () => {

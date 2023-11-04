@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import useAuth from "../../Hooks/useAuth";
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
+import axios from "axios";
 
 
 const Login = () => {
@@ -20,10 +21,17 @@ const Login = () => {
         const toastId = toast.loading('User Login in....')
         signIn(email, password)
         .then(res => {
-            console.log(res.user);
+            const loggedInUser = res.user;
+            const user = { email: loggedInUser.email}
+            
+            axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
+            .then(res => {
+                if (res.data.success) {
+                    toast.success('User Login Successful', { id: toastId });
+                    navigate(location?.state ? location.state : '/');
+                }
+            })
             form.reset();
-            toast.success('User Login Successful', { id: toastId });
-            navigate(location?.state ? location.state : '/');
         })
         .catch(err => {
             console.log(err.message);

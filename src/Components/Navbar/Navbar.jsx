@@ -37,6 +37,12 @@ function Navbar() {
     const scroll = window.addEventListener("scroll", listenScrollEvent);
     return () => scroll;
   }, [])
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => { })
+      .catch(err => console.log(err))
+  }
   
   const navLink =
     <>
@@ -101,7 +107,7 @@ function Navbar() {
                 </li>
                 <li>
                   <button className="btn btn-sm  btn-ghost"
-                    onClick={logOut}
+                    onClick={handleLogOut}
                   >Logout</button>
 
                 </li>
