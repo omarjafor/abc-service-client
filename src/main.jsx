@@ -10,6 +10,8 @@ import Register from './Pages/Register/Register';
 import { Toaster } from 'react-hot-toast';
 import Profile from './Pages/Profile/Profile';
 import { HelmetProvider } from 'react-helmet-async';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
+import BookService from './Pages/BookService/BookService';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +25,14 @@ const router = createBrowserRouter([
       {
         path: 'profile',
         element: <Profile></Profile>
+      },
+      {
+        path: 'bookservice/:id',
+        element: <PrivateRoute><BookService></BookService></PrivateRoute>,
+        loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
+      },
+      {
+        
       }
     ]
   },
