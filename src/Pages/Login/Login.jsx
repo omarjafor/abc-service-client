@@ -8,7 +8,7 @@ const Login = () => {
     const [authError, setAuthError] = useState('');
     const location = useLocation();
     const navigate = useNavigate();
-    const { signIn, googleLogin, facebookLogin } = useAuth()
+    const { signIn, googleLogin, facebookLogin, twitterLogin, githubLogin } = useAuth()
 
     const handleSignIn = e => {
         e.preventDefault();
@@ -27,6 +27,7 @@ const Login = () => {
         .catch(err => {
             console.log(err.message);
             setAuthError('Check Your Email or Password');
+            toast.error('Login Failed', { id: toastId })
         })
     }
 
@@ -40,6 +41,7 @@ const Login = () => {
         })
         .catch(err => {
             console.log(err.message);
+            toast.error('Login Failed', { id: toastId })
         })
     }
 
@@ -53,8 +55,37 @@ const Login = () => {
             })
             .catch(err => {
                 console.log(err.message);
+                toast.error('Login Failed', { id: toastId })
             })
     } 
+
+    const handleTwitterLogin = () => {
+        const toastId = toast.loading('User Login in....')
+        twitterLogin()
+            .then(res => {
+                console.log(res.user)
+                toast.success('User Login Successfull', { id: toastId })
+                navigate(location?.state ? location.state : '/');
+            })
+            .catch(err => {
+                console.log(err.message);
+                toast.error('Login Failed', { id: toastId })
+            })
+    }
+
+    const handleGithubLogin = () => {
+        const toastId = toast.loading('User Login in....')
+        githubLogin()
+            .then(res => {
+                console.log(res.user)
+                toast.success('User Login Successfull', { id: toastId })
+                navigate(location?.state ? location.state : '/');
+            })
+            .catch(err => {
+                console.log(err.message);
+                toast.error('Login Failed', { id: toastId })
+            })
+    }
 
     return (
         <section className="relative flex flex-wrap lg:h-screen lg:items-center">
@@ -162,14 +193,14 @@ const Login = () => {
                     </button>
                     <button
                         className="block select-none relative mb-4 place-items-center align-middle"
-                        onClick={handleGoogleLogin}
+                        onClick={handleTwitterLogin}
                         data-ripple-light="true"
                     >
                         <img src="https://i.ibb.co/3rfR0H7/twitter.png" alt="" className="h-12 w-12 mx-auto" />
                     </button>
                     <button
                         className="block select-none relative mb-4 place-items-center align-middle"
-                        onClick={handleGoogleLogin}
+                        onClick={handleGithubLogin}
                         data-ripple-light="true"
                     >
                         <img src="https://i.ibb.co/xf4HYnH/github.png" alt="" className="h-12 w-12 mx-auto" />
