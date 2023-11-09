@@ -9,7 +9,6 @@ const MyBooking = () => {
     const [bookings, setBookings] = useState([]);
     const { user } = useAuth();
     const axiosSecure = useAxios();
-
     const url = `/bookings?email=${user.email}`;
 
     useEffect( () => {
