@@ -4,7 +4,10 @@ import auth from "../Firebase/firebase.config";
 
 export const AuthContext = createContext(null);
 
-
+const googleProvider = new GoogleAuthProvider();
+const facebookProvider = new FacebookAuthProvider();
+const twitterProvider = new TwitterAuthProvider();
+const githubProvider = new GithubAuthProvider();
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState();
