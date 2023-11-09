@@ -6,7 +6,7 @@ import logo from './../../../public/logo.png'
 function Navbar() {
   const [mode, setMode] = useState('light');
   const [scrollvalue, setScrollvalue] = useState(0)
-
+  const { user, logOut } = useAuth();
 
   const changeTheme = () => {
     const html = document.documentElement;
