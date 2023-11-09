@@ -45,8 +45,17 @@ const Login = () => {
         googleLogin()
         .then(res => {
             console.log(res.user)
-            toast.success('User Login Successfull', { id: toastId })
-            navigate(location?.state ? location.state : '/');
+            const loggedInUser = res.user;
+            const user = { email: loggedInUser.email }
+            axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
+                .then(res => {
+                    if (res.data.success) {
+                        toast.success('User Login Successful', { id: toastId });
+                        navigate(location?.state ? location.state : '/');
+                    }
+                })
+            // toast.success('User Login Successfull', { id: toastId })
+            // navigate(location?.state ? location.state : '/');
         })
         .catch(err => {
             console.log(err.message);
