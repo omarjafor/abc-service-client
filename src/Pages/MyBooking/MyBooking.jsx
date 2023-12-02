@@ -4,7 +4,6 @@ import useAxios from "../../Hooks/useAxios";
 import BookingRow from "./BookingRow";
 import toast from "react-hot-toast";
 
-
 const MyBooking = () => {
     const [bookings, setBookings] = useState([]);
     const { user } = useAuth();
