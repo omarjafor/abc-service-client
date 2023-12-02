@@ -81,9 +81,6 @@ function Navbar() {
         <Link to='/'><img src={logo} alt="" className="h-28" /></Link>
       </div>
 
-
-
-      {/* avatar part  */}
       <div className="navbar-end">
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 mt-3">

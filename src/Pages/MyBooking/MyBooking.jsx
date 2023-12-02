@@ -58,7 +58,6 @@ const MyBooking = () => {
             <h2 className="text-5xl">Your bookings: {bookings.length}</h2>
             <div className="overflow-x-auto w-full">
                 <table className="table w-full">
-                    {/* head */}
                     <thead>
                         <tr>
                             <th>
