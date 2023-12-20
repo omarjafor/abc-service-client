@@ -8,7 +8,8 @@ import axios from "axios";
 
 const Login = () => {
     const [authError, setAuthError] = useState('');
-   
+    const location = useLocation();
+    const navigate = useNavigate();
     const { signIn, googleLogin, facebookLogin, twitterLogin, githubLogin } = useAuth()
 
     const handleSignIn = e => {
