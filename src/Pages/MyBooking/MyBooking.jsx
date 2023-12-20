@@ -10,7 +10,10 @@ const MyBooking = () => {
     const axiosSecure = useAxios();
     const url = `/bookings?email=${user.email}`;
 
-   
+    useEffect( () => {
+        axiosSecure.get(url)
+        .then(res => setBookings(res.data))
+    } , [axiosSecure, url])
 
     const handleDelete = (id) => {
         const proced = confirm('Are You Sure Want to Delete?');
