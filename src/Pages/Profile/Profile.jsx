@@ -3,7 +3,7 @@ import { AiFillFacebook, AiFillTwitterSquare, AiOutlineInstagram } from 'react-i
 import useAuth from "../../Hooks/useAuth";
 
 const Profile = () => {
-    const { user } = useAuth();
+    
 
     return (
         <div className="flex justify-center gap-8 items-center flex-col my-24 mx-5 lg:flex-row">
