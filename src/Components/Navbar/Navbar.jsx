@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, NavLink } from "react-router-dom";
-import useAuth from '../../Hooks/useAuth';
-import logo from './../../../public/logo.png'
+
 
 function Navbar() {
   const [mode, setMode] = useState('light');
