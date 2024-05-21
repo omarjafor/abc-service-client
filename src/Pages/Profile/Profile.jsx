@@ -18,9 +18,7 @@ const Profile = () => {
                     <h4 className="mb-2 block font-sans text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
                         {user?.displayName}
                     </h4>
-                    <p className="block bg-gradient-to-tr from-blue-600 to-blue-800 bg-clip-text font-sans text-base font-medium leading-relaxed text-transparent antialiased">
-                        {user?.email}
-                    </p>
+                    
                 </div>
                 <div className="flex justify-center pb-4 gap-4">
                     <button
